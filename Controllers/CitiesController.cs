@@ -23,6 +23,7 @@ namespace W05Lab.Controllers
         public async Task<IActionResult> Index()
         {
             var applicationDbContext = _context.Cities.Include(c => c.Province);
+
             return View(await applicationDbContext.ToListAsync());
         }
 
@@ -37,6 +38,7 @@ namespace W05Lab.Controllers
             var city = await _context.Cities
                 .Include(c => c.Province)
                 .FirstOrDefaultAsync(m => m.CityId == id);
+            
             if (city == null)
             {
                 return NotFound();
@@ -78,6 +80,7 @@ namespace W05Lab.Controllers
             }
 
             var city = await _context.Cities.FindAsync(id);
+            
             if (city == null)
             {
                 return NotFound();
