@@ -27,7 +27,9 @@ namespace W05Lab.Controllers_api
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Province>>> GetProvinces()
         {
-            return await _context.Provinces.ToListAsync();
+            return await _context.Provinces
+            .Include(p => p.Cities)
+            .ToListAsync();
         }
 
         // GET: api/Provinces/5

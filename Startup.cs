@@ -42,6 +42,10 @@ namespace W05Lab
                     .AllowAnyMethod()
                     .AllowAnyHeader();
             }));
+
+            services.AddControllers().AddNewtonsoftJson(options =>
+                options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+            );
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
